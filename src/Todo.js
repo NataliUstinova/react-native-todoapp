@@ -19,12 +19,15 @@ const Todo = ({ todo, onRemove, onEdit }) => {
   useEffect(() => {
     setIsDone(todo.isDone);
   }, [todo]);
-
+  
   const handleStrike = () => {
     setIsDone(!isDone);
-    Api.updateTodoStatus(todo.id, !isDone)
-      .then()
-      .catch((error) => {
+    Api.updateTodoStatus(todo.id, todo.title, !isDone)
+      .then(() => {
+        // trigger a re-render by updating the todo state in the parent component
+        onEdit(todo.id, todo.title, !isDone);
+      })
+      .catch(error => {
         console.error(error);
       });
   };

@@ -54,14 +54,14 @@ class Api {
   }
 
   // Function to edit a todo
-  async editTodo(id, newTitle) {
+  async editTodo(id, newTitle, isDone) {
     try {
       const response = await fetch(`${this.BASE_URL}/users/2/todos/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ title: newTitle }),
+        body: JSON.stringify({ title: newTitle, isDone: isDone }),
       });
       return await response.json();
     } catch (error) {
@@ -76,7 +76,7 @@ class Api {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({isDone}), // Update the isDone property
+        body: JSON.stringify({isDone: isDone}), // Update the isDone property
       });
       return await response.json();
     } catch (error) {
