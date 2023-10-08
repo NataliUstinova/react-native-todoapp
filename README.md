@@ -13,6 +13,30 @@ This is a simple React Native Todo App that allows you to manage your tasks and 
 - alerts on checking if todo is already exist or the input is empty
 - User-friendly workflow with keyboard 
 
+## React Native technologies and libraries:
+| Feature                               | Technology/Library                                   |
+| ------------------------------------- | ---------------------------------------------------- |
+| User Authentication                   | Firebase Authentication, AWS Cognito, Auth0           |
+| Data Persistence                      | AsyncStorage, SQLite, Realm, Firebase Realtime Database, Firestore |
+| User Profiles                         | React Native UI components for user profile management |
+| Multiple Lists                        | React Navigation for screen management              |
+| Notifications                         | React Native Push Notifications, Firebase Cloud Messaging (FCM) |
+| Sorting and Filtering                  | JavaScript array methods, Backend server for complex operations |
+| Search Functionality                   | React Native TextInput, JavaScript array methods    |
+| Archiving Completed Todos             | Custom logic to manage completed todos              |
+| Sharing Todos                         | Custom logic for sharing via SMS, email, etc.        |
+| Dark Mode                             | React Native Appearance API for dark mode styles    |
+| Due Dates and Reminders               | React Native DatePicker, Local notifications or push notifications |
+| Recurring Todos                       | Custom logic for managing recurring tasks            |
+| Task Notes                            | Text input components for notes                      |
+| Sync Across Devices                   | Custom backend with data synchronization capabilities |
+| Data Backup                           | Periodic data backup to cloud storage (e.g., AWS S3) |
+| Statistics and Insights               | Custom data analysis and visualization components   |
+| Gestures and Animations               | React Native Gesture Handler, React Native Animated |
+| Accessibility                         | React Native's built-in accessibility features, react-native-accessibility |
+| Localization                          | react-native-localize for localization and internationalization |
+| Feedback and Support                  | Custom feedback forms, email integration for user feedback |
+
 
 ## TODO list:
 - [ ] **User Authentication:** Implement user authentication to allow users to create accounts, sign in, and keep their todo lists private.
