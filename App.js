@@ -97,6 +97,7 @@ export default function App() {
             data={sortedTodos}
             renderItem={({ item }) => (
               <Todo
+                todos={todos}
                 todo={item}
                 onRemove={handleRemoveTodo}
                 onEdit={handleEditTodo}

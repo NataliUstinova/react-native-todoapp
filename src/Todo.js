@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import Api from '../Api';
 
-const Todo = ({ todo, onRemove, onEdit }) => {
+const Todo = ({ todo, onRemove, onEdit, todos }) => {
   const [isDone, setIsDone] = useState(todo.isDone);
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(todo.title);
@@ -63,7 +63,15 @@ const Todo = ({ todo, onRemove, onEdit }) => {
         titleInputRef.current.focus(); // Focus on the input field
         return; // Prevent saving an empty title
       }
-      onEdit(todo.id, editedTitle, todo);
+      // Check if the todo title already exists
+      const isTodoExist = todos.some(todo => todo.title === editedTitle.trim());
+      if (isTodoExist) {
+        // Handle the case where the todo title already exists (e.g., show an alert)
+        Alert.alert("This task already exists");
+        titleInputRef.current.focus(); // Focus on the input field after alert
+        return;
+      }
+      onEdit(todo.id, editedTitle, todo.isDone);
     }
     setIsEditing(!isEditing);
   };
@@ -95,11 +103,11 @@ const Todo = ({ todo, onRemove, onEdit }) => {
               style={styles.editInput}
               onChangeText={handleTitleChange}
               value={editedTitle}
+              autoCorrect={false}
+              autoCapitalize="none"
               autoFocus={true}
               onBlur={handleEdit}
               onSubmitEditing={handleEdit}
-              minLength={1}
-              maxLength={50}
             />
           ) : (
             <Text
