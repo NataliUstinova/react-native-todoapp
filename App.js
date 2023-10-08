@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, FlatList, RefreshControl, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, FlatList, RefreshControl, StyleSheet, View, AppState} from 'react-native';
 import Navbar from "./src/Navbar";
 import AddTodo from "./src/AddTodo";
 import Todo from "./src/Todo";
@@ -25,7 +25,23 @@ export default function App() {
   useEffect(() => {
     getUser(2)
   }, []);
-  
+
+  // Add an event listener to AppState to detect when the app goes into the background
+  useEffect(() => {
+    const handleAppStateChange = (nextAppState) => {
+      if (nextAppState === 'active') {
+        // App has come back to the foreground, fetch todos again
+        fetchTodos();
+      }
+    };
+    const appStateSubscription = AppState.addEventListener(
+      'change',
+      handleAppStateChange
+    );
+    return () => {
+      appStateSubscription.remove();
+    };
+  }, []);
   
   const getUser = (userId) => {
     setRefreshing(true);
